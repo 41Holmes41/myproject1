@@ -1,0 +1,51 @@
+body {
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    text-align: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "title title title"
+        ". winnings ."
+        "option1 option2 option3"
+        "totalWinnings totalWinnings spin";
+}
+
+.title{
+    grid-area: title;
+}
+
+.option1 {
+    grid-area: option1;
+    height: 50px;
+    background-color: gray;
+}
+
+.option2 {
+    grid-area: option2;
+    height: 50px;
+    background-color: gray;
+}
+
+.option3 {
+    grid-area: option3;
+    height: 50px;
+    background-color: gray;
+}
+
+button {
+    grid-area: spin;
+}
+
+.winnings {
+    grid-area: winnings;
+    height: 50px;
+    background-color: gray;
+}
+
+.total-winnings {
+    grid-area: totalWinnings;
+    height: 50px;
+    background-color: gray;
+}
