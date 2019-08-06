@@ -1,51 +1,91 @@
 body {
     height: 100vh;
-    background-color: rgb(255, 255, 255);
+    font-family: 'Blinker', sans-serif;
+    background-color: rgb(158, 255, 234);
     display: grid;
     text-align: center;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
         "title title title"
         ". winnings ."
         "option1 option2 option3"
+        "option21 option22 option23"
+        "option31 option32 option33"
+        "wagerInput wagerInput wager"
         "totalWinnings totalWinnings spin";
 }
 
 .title{
+    font-size: 50px;
     grid-area: title;
+    color: rgb(171, 107, 255);
 }
 
 .option1 {
     grid-area: option1;
-    height: 50px;
-    background-color: gray;
+    height: 150px;
 }
 
 .option2 {
     grid-area: option2;
     height: 50px;
-    background-color: gray;
 }
 
 .option3 {
     grid-area: option3;
     height: 50px;
-    background-color: gray;
+}
+
+.option21 {
+    grid-area: option21;
+    height: 100px;
+}
+.option22 {
+    grid-area: option22;
+    height: 50px;
+}
+.option23 {
+    grid-area: option23;
+    height: 50px;
+}
+.option31 {
+    grid-area: option31;
+    height: 100px;
+}
+.option32 {
+    grid-area: option32;
+    height: 50px;
+}
+.option33 {
+    grid-area: option33;
+    height: 50px;
 }
 
 button {
     grid-area: spin;
+    border-radius: 30%;
 }
 
 .winnings {
     grid-area: winnings;
-    height: 50px;
-    background-color: gray;
+    height: 75px;
+    border-radius: 10%;
 }
 
 .total-winnings {
     grid-area: totalWinnings;
     height: 50px;
-    background-color: gray;
+}
+
+img {
+    height: 50px;
+}
+
+.wager-input{
+    grid-area: wagerInput;
+}
+
+.wager{
+    grid-area: wager;
 }
