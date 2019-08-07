@@ -10,6 +10,9 @@ let individualCombos;
 let round;
 let lock;
 let targetedSpaces;
+let result2;
+let resultTemp;
+//let getResult = getResult();
 
 /* ------initialize element variables -------*/
 
@@ -38,6 +41,7 @@ let combo4 = document.querySelector('.combo4');
 let combo5 = document.querySelector('.combo5');
 let imageNodeList=  document.querySelectorAll("img");
 let spaceNodeList=  document.querySelectorAll(".space");
+let filler = document.querySelector('.option55');
 
 
 
@@ -45,18 +49,19 @@ let spaceNodeList=  document.querySelectorAll(".space");
 
 /* ---------------------define functions---------------------- */
 function init() {
-    result=[
-        [0,0,0],
-        [0,0,0],
-        [0,0,0]
+    result=[ 
+        [getResult(),getResult(), getResult()], 
+        [getResult(), getResult(), getResult()], 
+        [getResult(), getResult(), getResult()] 
     ];
+    result2= [ result[0][0], result[0][1], result[0][2], result[1][0], result[1][1], result[1][2], result[2][0], result[2][1], result[2][2] ];
     wager=0;
     multiplier=0;
     winnings=0;
     totalWinnings=50;
     round = 0;
     lock = 0;
-    targetedSpaces= [];
+    targetedSpaces= [filler,filler,filler];
     pics = {
         1 : 'images\\skull-and-bones.png',
         2 : 'images\\diamond (6).png',
@@ -74,21 +79,11 @@ function init() {
 
 /* ------------add event listeners------------------- */
     spin.addEventListener('click', function(){
-        
-        let result2= [ result[0][0], result[0][1], result[0][2], result[1][0], result[1][1], result[1][2], result[2][0], result[2][1], result[2][2] ];
-        
-        function determination(number)  {
-            if ( (number !== targetedSpaces[0].dataset.square) && (number !== targetedSpaces[1].dataset.square) && (number !== targetedSpaces[2].dataset.square)){
-                return getResult();
-            } else {
-                return result2[number];
-            }
-        }
-        
+        resetBoard();
         result=[ 
-            [determination(1), determination(2), determination(3)], 
-            [determination(4), determination(5), determination(6)], 
-            [determination(7), determination(8), determination(9)] 
+            [getResult(),getResult(), getResult()], 
+            [getResult(), getResult(), getResult()], 
+            [getResult(), getResult(), getResult()] 
         ];
     
         getCombo(result);
@@ -101,43 +96,21 @@ function init() {
         round += 1;
         
         render();
-        if (round>=3) {
-            
-            alert("Round Ended!  Click spin to begin new round!");
-            
-            resetBoard();
-            render();
-            round =0;
-            lock=0;
-        };
+        
 
     });
 
-    spaceNodeList.forEach(node=>{
-        node.addEventListener('click', function(evt){
-            if (lock < 3) {
-                targetedSpaces.push(evt.target);
-                //this.style.border = "15px solid black";
-                lock += 1;
-                render();
-            };
-        });
-    });
 };
 
 function render() {
 
+    
     checkForLoss();
     borderReset();
     placePics();
     renderBorders();
     renderCombos();
-    console.log(lock);
-    if (round>=3) {
-        treasureReset();
-        borderReset();
-        
-    }
+
 
     wagerMessage.innerHTML=`<h3>Wager: $${wager} </h3>`;
     winningsMessage.innerHTML = `Winnings: $${winnings}`;
@@ -150,11 +123,11 @@ function render() {
 function getResult() {
     let random = Math.random() * 100;
 
-    if ((random>=0)&&(random<=45)) return 1;
-    if ((random>45)&&(random<=70)) return 2;
-    if ((random>70)&&(random<=85)) return 3;
-    if ((random>85)&&(random<=95)) return 4;
-    if ((random>95)&&(random<=100)) return 5;
+    if ((random>=0)&&(random<=30)) return 1;
+    if ((random>30)&&(random<=55)) return 2;
+    if ((random>55)&&(random<=75)) return 3;
+    if ((random>75)&&(random<=90)) return 4;
+    if ((random>90)&&(random<=100)) return 5;
 }
 
 function getCombo(result) {
@@ -164,7 +137,7 @@ function getCombo(result) {
 
     if ( result[i][0] === result[i][1]) {
         if (result[i][1]===result[i][2]) {
-            if (result[i][0]===1) {multiplier -= 1; individualCombos[1]-=1;}
+            if (result[i][0]===1) {multiplier -= 3; individualCombos[1]-=3;}
             if (result[i][0]===2) {multiplier += 3; individualCombos[2]+=3;}
             if (result[i][0]===3) {multiplier += 12; individualCombos[3]+=12;}
             if (result[i][0]===4) {multiplier += 48; individualCombos[4]+=48;}
@@ -175,7 +148,7 @@ function getCombo(result) {
  for (var i=0; i<result.length; i++) {
     if ( result[0][i] === result[1][i]) {
         if (result[1][i]===result[2][i]) {
-            if (result[0][i]===1) {multiplier -= 1; individualCombos[1]-=1;}
+            if (result[0][i]===1) {multiplier -= 3; individualCombos[1]-=3;}
             if (result[0][i]===2) {multiplier += 3; individualCombos[2]+=3;}
             if (result[0][i]===3) {multiplier += 12; individualCombos[3]+=12;}
             if (result[0][i]===4) {multiplier += 48; individualCombos[4]+=48;}
@@ -186,7 +159,7 @@ function getCombo(result) {
  //--------------check for diagonal combos
  if (result[0][0]===result[1][1]) {
     if (result[1][1]===result[2][2]) {
-        if (result[0][0]===1) {multiplier -= 1; individualCombos[1]-=1;}
+        if (result[0][0]===1) {multiplier -= 3; individualCombos[1]-=3;}
         if (result[0][0]===2) {multiplier += 3; individualCombos[2]+=3;}
         if (result[0][0]===3) {multiplier += 12; individualCombos[3]+=12;}
         if (result[0][0]===4) {multiplier += 48; individualCombos[4]+=48;}
@@ -195,7 +168,7 @@ function getCombo(result) {
  }
  if (result[0][2]===result[1][1]) {
     if (result[1][1]===result[2][0]) {
-        if (result[0][2]===1) {multiplier -= 1; individualCombos[1]-=1;}
+        if (result[0][2]===1) {multiplier -= 3; individualCombos[1]-=3;}
         if (result[0][2]===2) {multiplier += 3; individualCombos[2]+=3;}
         if (result[0][2]===3) {multiplier += 12; individualCombos[3]+=12;}
         if (result[0][2]===4) {multiplier += 48; individualCombos[4]+=48;}
@@ -220,9 +193,6 @@ function renderBorders() {
     let smallWinBorder = "10px solid blue";
     let targetBackground = "black";
 
-    for (let i=0; i < targetedSpaces.length; i++){
-        targetedSpaces[i].style.backgroundColor= targetBackground;
-       };
 
     if ((result[0][0]===result[0][1])&&(result[0][1]===result[0][2])) {
         if (result[0][0] === 1) {
@@ -284,6 +254,26 @@ function renderBorders() {
         image23.style.border = bigWinBorder;
         image33.style.border = bigWinBorder;}
     };
+    if ((result[0][0]===result[1][1])&&(result[1][1]===result[2][2])) {
+        if (result[0][0]===1) {
+            image1.style.border = lossBorder;
+            image22.style.border = lossBorder;
+            image33.style.border = lossBorder;
+        } else {
+        image1.style.border = bigWinBorder;
+        image22.style.border = bigWinBorder;
+        image33.style.border = bigWinBorder;}
+    };
+    if ((result[0][2]===result[1][1])&&(result[1][1]===result[2][0])) {
+        if (result[0][2]===1) {
+            image3.style.border = lossBorder;
+            image22.style.border = lossBorder;
+            image31.style.border = lossBorder;
+        } else {
+        image3.style.border = bigWinBorder;
+        image22.style.border = bigWinBorder;
+        image31.style.border = bigWinBorder;}
+    };
 };
 
 //-----------------------------------Reset borders to NONE-----------------------------
@@ -336,7 +326,7 @@ function resetBoard() {
     individualCombos[4]=0;
     individualCombos[5]=0;
     lock=0;
-    targetedSpaces=[];
+    targetedSpaces=[filler,filler,filler];
     
 };
 
