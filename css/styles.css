@@ -1,14 +1,15 @@
 body {
     height: 100vh;
     font-family: 'Blinker', sans-serif;
-    background-color: rgb(158, 255, 234);
+    background-color: #F3FFBD;
+    color: rgba(0, 0, 0, 0.4);
     display: grid;
     text-align: center;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
         "title title title"
-        ". winnings ."
+        "winnings combos combos"
         "option1 option2 option3"
         "option21 option22 option23"
         "option31 option32 option33"
@@ -19,7 +20,7 @@ body {
 .title{
     font-size: 50px;
     grid-area: title;
-    color: rgb(171, 107, 255);
+    color: #70C1B3;
 }
 
 .option1 {
@@ -63,8 +64,15 @@ body {
 }
 
 button {
+    position: relative;
+    bottom: 30px;
+    right: 30px;
     grid-area: spin;
-    border-radius: 30%;
+    border-radius: 10%;
+    background-color: #FF1654;
+    font-family: 'Blinker', sans-serif;
+    font-size: 50px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .winnings {
@@ -88,4 +96,14 @@ img {
 
 .wager{
     grid-area: wager;
+}
+
+.combos{
+    grid-area: combos;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.space:hover {
+    border: 3px solid black;
 }
