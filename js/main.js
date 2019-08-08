@@ -1,5 +1,4 @@
 /* --------------------variables-------------- */
-
 let result;
 let wager;
 let multiplier;
@@ -12,10 +11,8 @@ let lock;
 let targetedSpaces;
 let result2;
 let resultTemp;
-//let getResult = getResult();
 
 /* ------initialize element variables -------*/
-
 let title = document.querySelector('.title');
 let option1 = document.querySelector('.option1');
 let option2 = document.querySelector('.option2');
@@ -42,10 +39,6 @@ let combo5 = document.querySelector('.combo5');
 let imageNodeList=  document.querySelectorAll("img");
 let spaceNodeList=  document.querySelectorAll(".space");
 let filler = document.querySelector('.option55');
-
-
-
-
 
 /* ---------------------define functions---------------------- */
 function init() {
@@ -77,7 +70,7 @@ function init() {
         5 : 0
     }
 
-/* ------------add event listeners------------------- */
+ /* ------------add event listeners------------------- */
     spin.addEventListener('click', function(){
         resetBoard();
         result=[ 
@@ -85,44 +78,30 @@ function init() {
             [getResult(), getResult(), getResult()], 
             [getResult(), getResult(), getResult()] 
         ];
-    
         getCombo(result);
-    
         wager= parseInt(wagerInput.value);
-        //wagerInput.value = "1";
         winnings = winnings +(wager * multiplier);
         totalWinnings += winnings;
         totalWinnings -= wager;
         round += 1;
-        
         render();
-        
-
     });
-
 };
 
 function render() {
-
-    
     checkForLoss();
     borderReset();
     placePics();
     renderBorders();
     renderCombos();
-
-
     wagerMessage.innerHTML=`<h3>Wager: $${wager} </h3>`;
     winningsMessage.innerHTML = `Winnings: $${winnings}`;
     totalWinningsMessage.innerHTML = `<h3>Total Winnings: $${totalWinnings}</h3>`;
     spin.innerHTML= `Spin! Round ${round}`;
-
-    
 }
 
 function getResult() {
     let random = Math.random() * 100;
-
     if ((random>=0)&&(random<=30)) return 1;
     if ((random>30)&&(random<=55)) return 2;
     if ((random>55)&&(random<=75)) return 3;
@@ -131,10 +110,8 @@ function getResult() {
 }
 
 function getCombo(result) {
-
  // -----------check for 2 or 3 square winning combos
  for (var i=0; i<3; i++) {
-
     if ( result[i][0] === result[i][1]) {
         if (result[i][1]===result[i][2]) {
             if (result[i][0]===1) {multiplier -= 3; individualCombos[1]-=3;}
@@ -142,9 +119,9 @@ function getCombo(result) {
             if (result[i][0]===3) {multiplier += 12; individualCombos[3]+=12;}
             if (result[i][0]===4) {multiplier += 48; individualCombos[4]+=48;}
             if (result[i][0]===5) {multiplier += 192; individualCombos[5]+=192;}
-        } }
-        }
-        
+        } 
+    }
+}    
  for (var i=0; i<result.length; i++) {
     if ( result[0][i] === result[1][i]) {
         if (result[1][i]===result[2][i]) {
@@ -153,9 +130,9 @@ function getCombo(result) {
             if (result[0][i]===3) {multiplier += 12; individualCombos[3]+=12;}
             if (result[0][i]===4) {multiplier += 48; individualCombos[4]+=48;}
             if (result[0][i]===5) {multiplier += 192; individualCombos[5]+=192;}
-        } }
+        } 
+    }
 }
-
  //--------------check for diagonal combos
  if (result[0][0]===result[1][1]) {
     if (result[1][1]===result[2][2]) {
@@ -175,7 +152,6 @@ function getCombo(result) {
         if (result[0][2]===5){multiplier += 192; individualCombos[5]+=192;}
     } 
  }
-
   //------------------------------------------------winning blackout combinations-------------------------------------------
   if ( (result[0][0]===result[0][1]) && (result[0][1]===result[0][2]) && (result[0][2]===result[1][0]) && (result[1][0]===result[1][1]) && (result[1][1]===result[1][2]) && (result[1][2]===result[2][0]) && (result[2][0]===result[2][1]) && (result[2][1]===result[2][2]) ) {
       if(result[0][0]===1) {multiplier -= 15; alert("Major Loss!!! Multiplier minus 15!");  individualCombos[1] -= 15}
@@ -185,15 +161,10 @@ function getCombo(result) {
       if(result[0][0]===5) {multiplier += 30000; alert("BIG TIME WIN!!! Multiplier plus 30000!");  individualCombos[5] += 30000}
   }
 }
-
 //------------------------------this renders the boardersfor matches-------------------------------
 function renderBorders() {
     let lossBorder = "15px solid #FF1654";
     let bigWinBorder = "15px solid #247BA0";
-    let smallWinBorder = "10px solid blue";
-    let targetBackground = "black";
-
-
     if ((result[0][0]===result[0][1])&&(result[0][1]===result[0][2])) {
         if (result[0][0] === 1) {
             image1.style.border = lossBorder;
@@ -275,7 +246,6 @@ function renderBorders() {
         image31.style.border = bigWinBorder;}
     };
 };
-
 //-----------------------------------Reset borders to NONE-----------------------------
 function borderReset(){
     imageNodeList.forEach(node=>{node.style.border="none";});
@@ -288,7 +258,6 @@ function treasureReset(){
         node.setAttribute('src', "images\\treasure.png")
     });
 };
-
     //----------------------------------place pctures on board--------------------------------
 function placePics(){
     image1.src= pics[result[0][0]];

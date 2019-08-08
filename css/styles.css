@@ -42,18 +42,22 @@ body {
     grid-area: option21;
     height: 100px;
 }
+
 .option22 {
     grid-area: option22;
     height: 50px;
 }
+
 .option23 {
     grid-area: option23;
     height: 50px;
 }
+
 .option31 {
     grid-area: option31;
     height: 100px;
 }
+
 .option32 {
     grid-area: option32;
     height: 50px;
@@ -65,7 +69,6 @@ body {
 
 button {
     position: relative;
-    
     right: 30px;
     grid-area: spin;
     border-radius: 10%;
