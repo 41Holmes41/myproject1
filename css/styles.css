@@ -25,7 +25,7 @@ body {
 
 .option1 {
     grid-area: option1;
-    height: 150px;
+    height: 100px;
 }
 
 .option2 {
@@ -65,7 +65,7 @@ body {
 
 button {
     position: relative;
-    bottom: 30px;
+    
     right: 30px;
     grid-area: spin;
     border-radius: 10%;
@@ -84,6 +84,7 @@ button {
 .total-winnings {
     grid-area: totalWinnings;
     height: 50px;
+    font-size: 40px;
 }
 
 img {
@@ -92,6 +93,8 @@ img {
 
 .wager-input{
     grid-area: wagerInput;
+    display: flex;
+    margin-left: 130px;
 }
 
 .wager{
@@ -102,6 +105,8 @@ img {
     grid-area: combos;
     display: flex;
     justify-content: space-evenly;
+    font-size: 30px;
+    text-align: center;
 }
 
 .space:hover {

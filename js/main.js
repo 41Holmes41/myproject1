@@ -307,6 +307,10 @@ function checkForLoss() {
         alert("You lose sucker!  Hit 'ok' to play again");
         init();
     }
+    if (totalWinnings>=1000) {
+        alert("You win!!!!!");
+        init();
+    }
 }
 
 function renderCombos(){
